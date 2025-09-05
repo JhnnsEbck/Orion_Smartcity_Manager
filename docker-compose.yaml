@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  mongo-db:
+    image: mongo:4.4
+    container_name: db-mongo
+    restart: unless-stopped
+    networks: [fiware]
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-db-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongo", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  orion:
+    image: quay.io/fiware/orion-ld:1.7.0
+    container_name: fiware-orion
+    restart: unless-stopped
+    networks: [fiware]
+    ports:
+      - "1026:1026"
+    depends_on:
+      mongo-db:
+        condition: service_healthy
+    # Notes:
+    # -dbhost points to the Mongo container hostname
+    # -logLevel info (good default)
+    # -httpTimeout a bit higher for dev; tweak if you like
+    command: >
+      -dbhost mongo-db
+      -logLevel INFO
+      -httpTimeout 300000
+
+networks:
+  fiware:
+    driver: bridge
+
+volumes:
+  mongo-db-data:
+    driver: local

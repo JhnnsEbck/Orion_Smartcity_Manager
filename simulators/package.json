@@ -1,0 +1,9 @@
+{
+  "name": "simulators",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "dotenv": "^17.2.2"
+  }
+}
