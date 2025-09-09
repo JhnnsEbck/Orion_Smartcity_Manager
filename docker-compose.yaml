@@ -26,10 +26,6 @@ services:
     depends_on:
       mongo-db:
         condition: service_healthy
-    # Notes:
-    # -dbhost points to the Mongo container hostname
-    # -logLevel info (good default)
-    # -httpTimeout a bit higher for dev; tweak if you like
     command: >
       -dbhost mongo-db
       -logLevel INFO

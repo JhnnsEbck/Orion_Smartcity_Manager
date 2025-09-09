@@ -1,4 +1,3 @@
-// backend/src/webhooks/computeAir.js
 import { Router } from 'express';
 import { getEntity, upsertEntityFast } from '../services/orionService.js';
 
@@ -20,9 +19,10 @@ router.post('/compute-air', async (req, res) => {
       id: target,
       type: 'AirQualityObserved',
       location: loc
+
     });
 
-    // compute next NO2 (very simple example)
+    // compute next NO2
     const base = (await getEntity(target)) || {};
     const prev = Number(base?.NO2?.value ?? 35);
     const next = Math.max(0, Math.round(prev * 1.05)); // +5% demo

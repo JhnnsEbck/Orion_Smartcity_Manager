@@ -1,9 +1,8 @@
-// simulators/traffic.js
 import { upsert } from './common.js';
 import { mkTrafficFlowObserved } from '../backend/src/models/ngsi/TrafficFlowObserved.js';
 import { urn, AREAS } from '../backend/src/lib/ids.js';
 
-const AREA = process.env.AREA || 'karlsplatz';
+const AREA      = process.env.AREA || 'karlsplatz';
 const id        = urn('TrafficFlowObserved', AREA);
 const affectsId = urn('AirQualityObserved',  AREA);
 
