@@ -9,7 +9,7 @@ const CTX = [
 
 router.post('/compute-air', async (req, res) => {
   try {
-    // pick target (from body or default)
+    
     const target = req.body?.targetId || 'urn:ngsi-ld:AirQualityObserved:vienna:karlsplatz:v1';
     const loc = { type: 'GeoProperty', value: { type: 'Point', coordinates: [16.368, 48.200] } };
 
