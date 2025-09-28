@@ -12,8 +12,6 @@ URIs follow `urn:ngsi-ld:{Type}:{city}:{area}:{version}`. All payloads use `appl
 
 ## Repository layout
 
-## Repository layout
-
 ```text
 backend/
 ├── src/
