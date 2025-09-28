@@ -11,7 +11,6 @@ A compact, standards-based prototype that integrates heterogeneous urban data in
 URIs follow `urn:ngsi-ld:{Type}:{city}:{area}:{version}`. All payloads use `application/ld+json` with NGSI‑LD core + Smart Data Models contexts.
 
 ## Repository layout
-
 backend/
 ├── src/
 │   ├── models/
