@@ -13,29 +13,28 @@ URIs follow `urn:ngsi-ld:{Type}:{city}:{area}:{version}`. All payloads use `appl
 ## Repository layout
 
 backend/
-    src/
-        models/
-            ngsi/ 
-                # entity factories (TrafficFlowObserved, WeatherObserved, AirQualityObserved)
-    services/ 
-        # orionService (upsert/get/patch), WL poller
-        wl/ # Logic + WL-API request handler for seeding real location data from 
-    webhooks/
-        computeAir.js # derivation webhook
-    routes/ 
-        # optional REST routes
-    index.js 
-        # Express app
-    scripts/
-        create-subscriptions.js # creates required Orion-LD subscriptions
-        seed-wl.js # seeding script with Wiener Linien stops data to simulate location data
+├── src/
+│   ├── models/
+│   │   └── ngsi/
+│   │       ├── TrafficFlowObserved.js
+│   │       ├── WeatherObserved.js
+│   │       └── AirQualityObserved.js   # entity factories
+│   ├── services/
+│   │   ├── orionService.js             # upsert/get/patch
+│   │   └── wl/                         # WL-API request handler for seeding real location data
+│   ├── webhooks/
+│   │   └── computeAir.js               # derivation webhook
+│   ├── routes/                         # optional REST routes
+│   └── index.js                        # Express app
+├── scripts/
+│   ├── create-subscriptions.js         # creates Orion-LD subscriptions
+│   └── seed-wl.js                      # seeding script with WL stop data
 simulators/
-    common.js # NGSI-LD and Context logic
-    air.js # AirQualityObserved
-    traffic.js # TrafficFlowObserved
-    weather.js # WeatherObserved
+├── common.js                           # NGSI-LD and context logic
+├── air.js                              # AirQualityObserved simulator
+├── traffic.js                          # TrafficFlowObserved simulator
+└── weather.js                          # WeatherObserved simulator
 docker-compose.yml
-.env
 
 
 ## Prerequisites
