@@ -5,14 +5,14 @@ import { urn, AREAS } from '../backend/src/lib/ids.js';
 const AREA = process.env.AREA || 'karlsplatz';
 const id   = urn('WeatherObserved', AREA);
 
-let wind = 3.5;   // m/s
-let temp = 22.0;  // °C
-let tickN = 0;
-
-function round1(x) { return Math.round(x * 10) / 10; }
-
 async function tick() {
+
+  let wind = 3.5;   // m/s
+  let temp = 22.0;  // °C
+  let tickN = 0;
   tickN += 1;
+  
+  function round1(x) { return Math.round(x * 10) / 10; }
 
   wind += (Math.random() - 0.5) * 0.6;
   temp += (Math.random() - 0.5) * 0.3;

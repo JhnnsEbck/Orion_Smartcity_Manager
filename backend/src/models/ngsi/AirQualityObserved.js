@@ -1,6 +1,12 @@
 // backend/src/models/ngsi/AirQualityObserved.js
-export function mkAirQualityObserved({ id, NO2, PM10, temperature, coords, ts }) {
-  const now = ts || new Date().toISOString();
+export function mkAirQualityObserved({ 
+  id, 
+  NO2, 
+  PM10, 
+  temperature, 
+  coords
+}) {
+  const now = new Date().toISOString();
   return {
     '@context': [
       'https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld',

@@ -1,4 +1,3 @@
-// backend/src/models/ngsi/TrafficFlowObserved.js
 export function mkTrafficFlowObserved({
   id,
   intensity,

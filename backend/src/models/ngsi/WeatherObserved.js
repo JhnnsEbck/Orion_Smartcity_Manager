@@ -1,4 +1,10 @@
-export function mkWeatherObserved({ id, windSpeed, temperature, coords, affectsId }) {
+export function mkWeatherObserved({ 
+  id, 
+  windSpeed, 
+  temperature, 
+  coords, 
+  affectsId 
+}) {
   const now = new Date().toISOString();
   return {
     '@context': [
