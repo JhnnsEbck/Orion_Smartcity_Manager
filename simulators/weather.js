@@ -1,4 +1,3 @@
-// simulators/weather.js
 import { upsert } from './common.js';
 import { mkWeatherObserved } from '../backend/src/models/ngsi/WeatherObserved.js';
 import { urn, AREAS } from '../backend/src/lib/ids.js';
@@ -6,14 +5,28 @@ import { urn, AREAS } from '../backend/src/lib/ids.js';
 const AREA = process.env.AREA || 'karlsplatz';
 const id   = urn('WeatherObserved', AREA);
 
-let wind = 3.5;
-let temp = 22.0;
+let wind = 3.5;   // m/s
+let temp = 22.0;  // °C
+let tickN = 0;
+
+function round1(x) { return Math.round(x * 10) / 10; }
 
 async function tick() {
-  wind += (Math.random() - 0.5) * 0.8;
+  tickN += 1;
+
+  wind += (Math.random() - 0.5) * 0.6;
   temp += (Math.random() - 0.5) * 0.3;
-  wind = Math.max(0, Math.round(wind * 10) / 10);
-  temp = Math.round(temp * 10) / 10;
+
+  if (tickN % 5 === 0) {
+    wind += 3.0;
+  }
+
+  if (tickN % 6 === 0) {
+    wind -= 3.0;
+  }
+
+  wind = Math.max(0, Math.min(12, round1(wind)));
+  temp = round1(temp);
 
   const entity = mkWeatherObserved({
     id,
@@ -23,8 +36,11 @@ async function tick() {
   });
 
   await upsert(entity);
-  console.log(`[Weather] ${AREA} windSpeed → ${wind} m/s, temp → ${temp} °C`);
+  const ts = new Date().toISOString();
+  console.log(`[Weather][${ts}] area=${AREA} wind=${wind.toFixed(1)}m/s temp=${temp.toFixed(1)}°C`);
+  tickN = 0;
 }
 
-setInterval(tick, Number(process.env.WEATHER_MS || 1000));
+const MS = Number(3000);
+setInterval(tick, MS);
 tick();

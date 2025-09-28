@@ -1,4 +1,3 @@
-// scripts/create-subscriptions.js
 import 'dotenv/config';
 import axios from 'axios';
 
@@ -27,22 +26,22 @@ const subs = [
   {
     '@context': CTX,
     type: 'Subscription',
-    entities: [{ type: 'WeatherObserved' }],
-    watchedAttributes: ['windSpeed'],
+    entities: [{ type: 'PublicTransportObserved' }],
+    watchedAttributes: ['vehicleCount','dieselShare'],
     notification: {
       format: 'normalized',
-      attributes: ['windSpeed'],
+      attributes: ['vehicleCount','dieselShare'],
       endpoint: { uri: WEBHOOK, accept: 'application/json' }
     }
   },
   {
     '@context': CTX,
     type: 'Subscription',
-    entities: [{ type: 'PublicTransportObserved' }],
-    watchedAttributes: ['vehicleCount','dieselShare'],
+    entities: [{ type: 'WeatherObserved' }],
+    watchedAttributes: ['windSpeed'],
     notification: {
       format: 'normalized',
-      attributes: ['vehicleCount','dieselShare'],
+      attributes: ['windSpeed'],
       endpoint: { uri: WEBHOOK, accept: 'application/json' }
     }
   }

@@ -1,5 +1,4 @@
-// backend/src/models/ngsi/WeatherObserved.js
-export function mkWeatherObserved({ id, windSpeed, temperature, coords }) {
+export function mkWeatherObserved({ id, windSpeed, temperature, coords, affectsId }) {
   const now = new Date().toISOString();
   return {
     '@context': [
@@ -15,6 +14,9 @@ export function mkWeatherObserved({ id, windSpeed, temperature, coords }) {
       type: 'GeoProperty',
       value: { type: 'Point', coordinates: coords },
       observedAt: now
-    }
+    },
+    affects: affectsId
+      ? { type: 'Relationship', object: affectsId, observedAt: now }
+      : undefined
   };
 }

@@ -1,4 +1,3 @@
-// simulators/air.js
 import { upsert } from './common.js';
 import { mkAirQualityObserved } from '../backend/src/models/ngsi/AirQualityObserved.js';
 import { urn, AREAS } from '../backend/src/lib/ids.js';

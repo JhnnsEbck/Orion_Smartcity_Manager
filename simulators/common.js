@@ -5,7 +5,7 @@ const ORION = process.env.ORION_URL || 'http://localhost:1026';
 const MODE  = (process.env.NGSI_MODE || 'json').toLowerCase();
 
 function headers() {
-  return { 'Content-Type': MODE === 'jsonld' ? 'application/ld+json' : 'application/json' };
+  return { 'Content-Type': MODE === 'jsonld' ? 'application/json': 'application/ld+json' };
 }
 function withContext(e) {
   if (MODE !== 'jsonld') return e;
