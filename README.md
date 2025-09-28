@@ -12,6 +12,9 @@ URIs follow `urn:ngsi-ld:{Type}:{city}:{area}:{version}`. All payloads use `appl
 
 ## Repository layout
 
+## Repository layout
+
+```text
 backend/
 ├── src/
 │   ├── models/
@@ -21,7 +24,7 @@ backend/
 │   │       └── AirQualityObserved.js   # entity factories
 │   ├── services/
 │   │   ├── orionService.js             # upsert/get/patch
-│   │   └── wl/                         # WL-API request handler for seeding real location data
+│   │   └── wl/                         # WL-API request handler
 │   ├── webhooks/
 │   │   └── computeAir.js               # derivation webhook
 │   ├── routes/                         # optional REST routes
@@ -35,6 +38,7 @@ simulators/
 ├── traffic.js                          # TrafficFlowObserved simulator
 └── weather.js                          # WeatherObserved simulator
 docker-compose.yml
+```
 
 
 ## Prerequisites
