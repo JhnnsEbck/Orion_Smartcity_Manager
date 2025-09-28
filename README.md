@@ -61,5 +61,3 @@ docker-compose.yml
     node simulators/traffic.js
     node simulators/weather.js
     node simulators/air.js
-
-    
